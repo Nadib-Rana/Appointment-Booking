@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../api";
-import type { Doctor } from "../../types/index";
-import DoctorCard from "../commponets/DoctorCard";
+import type { Doctor } from "../../types";
+import DoctorCard from "../components/DoctorCard";
 import { motion } from "framer-motion";
+import { containerVariants, cardVariants } from "../animations/variants";
 
 export default function Doctors() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -25,17 +26,6 @@ export default function Doctors() {
   if (loading) return <div className="p-6 text-center text-gray-600">Loading...</div>;
   if (error) return <div className="p-6 text-red-600 text-center">{error}</div>;
 
-  // Framer Motion variants for staggered animation
-  const containerVariants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.15 } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, type: "spring", stiffness: 100 } },
-  };
-
   return (
     <motion.div
       className="p-6 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -48,6 +38,7 @@ export default function Doctors() {
           <DoctorCard doctor={d} />
         </motion.div>
       ))}
+    
     </motion.div>
   );
 }

@@ -19,6 +19,9 @@ export interface IDoctor extends Document {
   email: string;
   phone?: string;
   availability: IAvailability[];
+  fee:Number;
+  joblocation:String;
+  designation:String;
   clinic: {
     name?: string;
     address?: string;
@@ -26,4 +29,5 @@ export interface IDoctor extends Document {
   };
   profileImage?: string;
   education?: IEducation[];
+
 }

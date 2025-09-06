@@ -5,9 +5,16 @@ const doctorSchema = new Schema<IDoctor>({
   name: { type: String, required: true },
   specialization: { type: String, required: true },
   experience: { type: Number, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, unique: true },
   phone: { type: String },
-
+  fee:{type: Number, required: true, min: 0},
+  joblocation:{
+     type:String
+  },
+ designation:{
+  type: String
+ }
+,
   availability: [
     {
       date: { type: Date, required: true },

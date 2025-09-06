@@ -72,7 +72,7 @@ export default function DoctorProfile() {
           >
             {doctor.specialization}
           </motion.p>
-          {doctor.clinic && (
+          {doctor.clinic?.name && doctor.clinic?.city && (
             <motion.p 
               className="text-gray-600 mt-2"
               initial={{ x: -20, opacity: 0 }}
@@ -80,17 +80,6 @@ export default function DoctorProfile() {
               transition={{ delay: 0.4, duration: 0.5 }}
             >
               {doctor.clinic.name}, {doctor.clinic.city}
-            </motion.p>
-          )}
-
-          {doctor.bio && (
-            <motion.p 
-              className="mt-4 text-gray-700 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              {doctor.bio}
             </motion.p>
           )}
 
@@ -112,23 +101,63 @@ export default function DoctorProfile() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
       >
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-gray-800">Experience</h2>
-          <p className="text-gray-700">{doctor.experience ?? "Not specified"} years</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-gray-800">Consultation Fee</h2>
-          <p className="text-gray-700">${doctor.fee ?? "N/A"}</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-gray-800">Available Days</h2>
-          <p className="text-gray-700">{doctor.availability?.join(", ") ?? "Not specified"}</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-gray-800">Contact</h2>
-          <p className="text-gray-700">{doctor.contact ?? "Not provided"}</p>
-        </div>
+        <InfoCard title="Experience" content={`${doctor.experience ?? "Not specified"} years`} />
+        <InfoCard title="Consultation Fee" content={`$${doctor.fee ?? "N/A"}`} />
+        <InfoCard title="Job Location" content={doctor.joblocation ?? "Not specified"} />
+        <InfoCard title="Designation" content={doctor.designation ?? "Not specified"} />
+        <InfoCard
+          title="Available Days"
+          content={
+            doctor.availability?.length
+              ? doctor.availability.map((slot, idx) => (
+                  <div key={idx}>
+                    {new Date(slot.date).toLocaleDateString("en-US", {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric"
+                    })} — {slot.slots.join(", ")}
+                  </div>
+                ))
+              : "Not specified"
+          }
+        />
+        <InfoCard
+          title="Contact"
+          content={
+            <>
+              📧 {doctor.email} <br />
+              📞 {doctor.phone ?? "Not provided"}
+            </>
+          }
+        />
+        <InfoCard
+          title="Education"
+          content={
+            doctor.education?.length ? (
+              <ul className="list-disc pl-4 text-gray-700">
+                {doctor.education.map((edu, idx) => (
+                  <li key={idx}>
+                    {edu.degree} in {edu.fieldOfStudy ?? "General"} — {edu.institution} ({edu.year})
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              "Not specified"
+            )
+          }
+        />
       </motion.div>
     </motion.div>
+  );
+}
+
+// Reusable InfoCard component
+function InfoCard({ title, content }: { title: string; content: React.ReactNode }) {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h2 className="text-xl font-bold mb-2 text-gray-800">{title}</h2>
+      <div className="text-gray-700">{content}</div>
+    </div>
   );
 }

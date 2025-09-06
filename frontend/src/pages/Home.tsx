@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import api from "../api";
 import type { Doctor } from "../../types";
-import HeroSection from "../commponets/HeroSection";
-import SearchBar from "../commponets/SearchBar";
-import FeaturedDoctors from "./FeaturedDoctors";
-import HowItWorks from "../commponets/HowItWorks";
-import Statistics from "../commponets/Statistics";
-import Testimonials from "../commponets/Testimonials";
-import FooterCTA from "../commponets/FooterCTA";
+import FeaturedDoctors from "../components/FeaturedDoctors";
+import HeroSection from "../components/HeroSection";
+import SearchBar from "../components/SearchBar";
+import HowItWorks from "../components/HowItWorks";
+import Statistics from "../components/Statistics";
+import Testimonials from "../components/Testimonials";
+import FooterCTA from "../components/FooterCTA";
+
 
 export default function Home() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);

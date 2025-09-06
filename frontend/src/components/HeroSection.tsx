@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import HeroIm from "../../public/Stethoscope-for-medical-check-up-on-transparent-background-PNG-removebg-preview.png"
 export default function HeroSection() {
   return (
     <motion.section
@@ -42,7 +42,7 @@ export default function HeroSection() {
         transition={{ repeat: Infinity, duration: 3 }}
       >
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png"
+          src={HeroIm}
           alt="Doctor Illustration"
           className="w-80 h-80 md:w-full md:h-auto"
         />
