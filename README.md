@@ -24,7 +24,7 @@ This is **Phase 2** of a multi-phase healthcare solution. The goal is to create 
 ### 📅 Appointment Booking System
 - Calendar integration to view available slots
 - Real-time booking with validation
-- Confirmation notifications via email/SMS (optional)
+
 
 ### 📝 Patient Contact Form
 - Secure messaging to doctors
