@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@types/react-countup": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0",
+    "react-countup": "^6.5.3",
+    "save-dev": "^0.0.1-security"
+  },
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon src/server.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/nodemon": "^1.19.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
